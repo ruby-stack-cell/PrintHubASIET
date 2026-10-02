@@ -1,0 +1,1362 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrintHubASIET</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<section id="loginPage" class="login-page">
+
+    <div class="login-background"></div>
+
+    <div class="login-card">
+
+        <div class="brand">
+            <img class="brand-logo campus-logo" src="ASIET.jpg" alt="Adi Shankara Institute of Engineering and Technology campus logo">
+            <div>
+                <h1>PrintHub<span>ASIET</span></h1>
+                <p>Adi Shankara Institute of Engineering & Technology</p>
+            </div>
+        </div>
+
+        <div class="login-heading">
+            <span class="eyebrow">CAMPUS PRINTING SYSTEM</span>
+            <h2>Welcome back</h2>
+            <p>Choose your portal to continue.</p>
+        </div>
+
+        <div class="portal-tabs">
+            <button class="portal-tab active" data-portal="student">
+                <span>🎓</span>
+                <div>
+                    <strong>Student Portal</strong>
+                    <small>Place & track print orders</small>
+                </div>
+            </button>
+
+            <button class="portal-tab" data-portal="staff">
+                <span>▣</span>
+                <div>
+                    <strong>Shop Portal</strong>
+                    <small>Manage print orders</small>
+                </div>
+            </button>
+        </div>
+
+        <form id="studentLoginForm">
+
+            <label for="studentName">Name</label>
+            <input
+                id="studentName"
+                type="text"
+                placeholder="Enter your full name"
+                autocomplete="name"
+                required
+            >
+
+            <label>Registration Number</label>
+            <input
+                id="studentReg"
+                type="text"
+                placeholder="Eg. 2024CS1047"
+                autocomplete="off"
+                required
+            >
+
+            <div class="two-inputs">
+
+                <div>
+                    <label>Batch</label>
+                    <select id="studentBatch" required>
+                        <option value="">Select batch</option>
+                        <option>2024 - 2028</option>
+                        <option>2025 - 2029</option>
+                        <option>2026 - 2030</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Course</label>
+                    <select id="studentCourse" required>
+                        <option value="">Select course</option>
+                        <option>B.Tech EEE</option>
+                        <option>B.Tech CSE</option>
+                        <option>B.Tech ECE</option>
+                        <option>B.Tech CSE AI</option>
+                        <option>B.Tech Civil</option>
+                        <option>B.Tech Mechanical</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button class="primary-btn login-btn" type="submit">
+                Enter Student Portal
+                <span>→</span>
+            </button>
+
+        </form>
+
+        <form id="staffLoginForm" class="hidden">
+
+            <label>Staff ID</label>
+            <input
+                id="staffId"
+                type="text"
+                placeholder="Enter staff ID"
+                autocomplete="off"
+            >
+
+            <label>Password</label>
+
+            <input
+                id="staffPassword"
+                type="password"
+                placeholder="Enter password"
+            >
+
+            <button class="primary-btn login-btn" type="submit">
+                Enter Shop Portal
+                <span>→</span>
+            </button>
+
+            <div class="demo-login">
+                Demo staff login:
+                <strong>STAFF001 / 1234</strong>
+            </div>
+
+        </form>
+
+        <div class="login-footer">
+            <span>ASIET CAMPUS</span>
+            <span>•</span>
+            <span>PRINT SERVICES</span>
+            <span>DEVELOPED BY CLUELESS</span>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= STUDENT PORTAL ================= -->
+
+<section id="studentPage" class="portal-page hidden">
+
+    <header class="topbar">
+
+        <div class="top-brand">
+            <img class="mini-logo campus-logo" src="ASIET.jpg" alt="">
+
+            <div>
+                <strong>PrintHub<span>ASIET</span></strong>
+                <small>ASIET Campus</small>
+            </div>
+        </div>
+
+        <div class="college-name">
+            ADI SHANKARA INSTITUTE OF ENGINEERING & TECHNOLOGY
+        </div>
+
+        <div class="profile-area">
+            <div class="avatar" id="studentAvatar">S</div>
+
+            <div>
+                <strong id="studentHeaderName">Student</strong>
+                <small id="studentHeaderReg">Registration</small>
+            </div>
+
+            <button onclick="logout()" class="logout-btn">Logout</button>
+        </div>
+
+    </header>
+
+
+    <aside class="sidebar">
+
+        <div class="sidebar-title">STUDENT</div>
+
+        <button data-student-view="home" class="side-link active" title="Dashboard" aria-label="Dashboard">
+            <span>⌂</span>
+            Dashboard
+        </button>
+
+        <button data-student-view="print" class="side-link" title="New Print" aria-label="New Print">
+            <span>＋</span>
+            New Print
+        </button>
+
+        <button data-student-view="orders" class="side-link" title="My Orders" aria-label="My Orders">
+            <span>▤</span>
+            My Orders
+        </button>
+
+        <button data-student-view="staff" class="side-link" title="Staff Details" aria-label="Staff Details">
+            <span>♙</span>
+            Staff Details
+        </button>
+
+        <div class="sidebar-bottom">
+            <div class="secure-box">
+                <span>●</span>
+                Secure Campus Service
+            </div>
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <!-- STUDENT HOME -->
+
+        <section id="studentHome">
+
+            <div class="page-intro">
+                <div>
+                    <span class="eyebrow">STUDENT DASHBOARD</span>
+                    <h1>Hello, <span id="studentGreetingName">Student</span> 👋</h1>
+                    <p>Manage your campus printing from one place.</p>
+                </div>
+
+                <button
+                    class="primary-btn"
+                    onclick="studentNavigate('print')"
+                >
+                    + New Print Order
+                </button>
+            </div>
+
+
+            <div class="stat-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon">▤</div>
+                    <div>
+                        <small>Total Orders</small>
+                        <strong id="studentTotalOrders">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">◷</div>
+                    <div>
+                        <small>Active Orders</small>
+                        <strong id="studentActiveOrders">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✓</div>
+                    <div>
+                        <small>Ready Orders</small>
+                        <strong id="studentReadyOrders">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">₹</div>
+                    <div>
+                        <small>Total Paid</small>
+                        <strong id="studentTotalPaid">₹0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="content-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <span class="eyebrow">LATEST ACTIVITY</span>
+                            <h2>Recent Orders</h2>
+                        </div>
+
+                        <button
+                            class="text-btn"
+                            onclick="studentNavigate('orders')"
+                        >
+                            View all →
+                        </button>
+                    </div>
+
+                    <div id="studentRecentOrders"></div>
+
+                </div>
+
+
+                <div class="panel profile-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <span class="eyebrow">YOUR PROFILE</span>
+                            <h2>Student Details</h2>
+                        </div>
+                    </div>
+
+                    <div class="profile-details">
+
+                        <div>
+                            <span>Name</span>
+                            <strong id="studentProfileName">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Registration No.</span>
+                            <strong id="studentProfileReg">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Course</span>
+                            <strong id="studentProfileCourse">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Batch</span>
+                            <strong id="studentProfileBatch">—</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- NEW PRINT -->
+
+        <section id="studentPrint" class="hidden">
+
+            <div class="page-intro">
+                <div>
+                    <span class="eyebrow">PRINT SERVICE</span>
+                    <h1>New Print Order</h1>
+                    <p>Upload your PDF and collect it from the campus shop.</p>
+                </div>
+            </div>
+
+
+            <form id="printOrderForm">
+
+                <div class="print-layout">
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="eyebrow">01 / DOCUMENT</span>
+                                <h2>Upload PDF</h2>
+                            </div>
+                        </div>
+
+                        <label class="upload-area">
+
+                            <input
+                                id="printFile"
+                                type="file"
+                                accept=".pdf,application/pdf"
+                                hidden
+                            >
+
+                            <div class="upload-icon">↑</div>
+
+                            <strong id="uploadTitle">
+                                Drop your PDF here
+                            </strong>
+
+                            <span id="uploadSubtitle">
+                                or click to browse your files
+                            </span>
+
+                            <small>
+                                PDF only · Maximum 30 MB
+                            </small>
+
+                        </label>
+
+
+                        <label class="field-label">
+                            Special Instructions
+                        </label>
+
+                        <textarea
+                            id="printNotes"
+                            placeholder="Eg. Staple on top left, print selected pages..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="eyebrow">02 / OPTIONS</span>
+                                <h2>Print Settings</h2>
+                            </div>
+                        </div>
+
+
+                        <label class="field-label">Print Type</label>
+
+                        <div class="print-options">
+
+                            <button
+                                type="button"
+                                class="print-option selected"
+                                data-print-type="BW"
+                            >
+                                <span class="option-icon">B/W</span>
+                                <div>
+                                    <strong>Black & White</strong>
+                                    <small>₹1 per page</small>
+                                </div>
+                            </button>
+
+                            <button
+                                type="button"
+                                class="print-option"
+                                data-print-type="Colour"
+                            >
+                                <span class="option-icon colour">C</span>
+                                <div>
+                                    <strong>Colour</strong>
+                                    <small>₹5 per page</small>
+                                </div>
+                            </button>
+
+                        </div>
+
+
+                        <label class="field-label">Add-on Services</label>
+
+                        <div class="print-options finishing-options">
+
+                            <button type="button" class="print-option finishing-option" data-finishing-service="spiralBinding" data-finishing-group="binding" aria-pressed="false">
+                                <span class="option-icon">SB</span>
+                                <div>
+                                    <strong>Spiral Binding</strong>
+                                    <small>₹40 per order</small>
+                                </div>
+                            </button>
+
+                            <button type="button" class="print-option finishing-option" data-finishing-service="hardBinding" data-finishing-group="binding" aria-pressed="false">
+                                <span class="option-icon">HB</span>
+                                <div>
+                                    <strong>Hard Binding</strong>
+                                    <small>₹50 per order</small>
+                                </div>
+                            </button>
+
+                            <button type="button" class="print-option finishing-option" data-finishing-service="lamination" aria-pressed="false">
+                                <span class="option-icon">L</span>
+                                <div>
+                                    <strong>Lamination</strong>
+                                    <small>₹35 per order</small>
+                                </div>
+                            </button>
+
+                            <button type="button" class="print-option finishing-option" data-finishing-service="idCard" aria-pressed="false">
+                                <span class="option-icon">ID</span>
+                                <div>
+                                    <strong>ID Card Printing</strong>
+                                    <small>₹25 per order</small>
+                                </div>
+                            </button>
+
+                        </div>
+
+
+                        <div class="two-inputs">
+
+                            <div>
+                                <label class="field-label">Pages</label>
+                                <input
+                                    id="printPages"
+                                    type="number"
+                                    value="1"
+                                    min="1"
+                                    max="1000"
+                                >
+                            </div>
+
+                            <div>
+                                <label class="field-label">Copies</label>
+                                <input
+                                    id="printCopies"
+                                    type="number"
+                                    value="1"
+                                    min="1"
+                                    max="100"
+                                >
+                            </div>
+
+                        </div>
+
+
+                        <div class="price-box">
+
+                            <div>
+                                <span>Print type</span>
+                                <strong id="summaryPrintType">
+                                    Black & White
+                                </strong>
+                            </div>
+
+                            <div>
+                                <span>Pages</span>
+                                <strong id="summaryPageCount">1 × 1 = 1</strong>
+                            </div>
+
+                            <div>
+                                <span>Rate</span>
+                                <strong id="summaryRate">₹1</strong>
+                            </div>
+
+                            <div>
+                                <span>Finishing</span>
+                                <strong id="summaryFinishing">None</strong>
+                            </div>
+
+                            <div class="price-total">
+                                <span>Total</span>
+                                <strong id="summaryAmount">₹1</strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="eta-box">
+                            <span>Estimated completion</span>
+                            <strong id="liveEstimate">About 5–10 min</strong>
+                        </div>
+
+
+                        <button class="primary-btn wide-btn" type="submit">
+                            Review & Continue
+                            <span>→</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- ORDERS -->
+
+        <section id="studentOrders" class="hidden">
+
+            <div class="page-intro">
+
+                <div>
+                    <span class="eyebrow">ORDER HISTORY</span>
+                    <h1>My Orders</h1>
+                    <p>Track every print order submitted by you.</p>
+                </div>
+
+            </div>
+
+
+            <label class="order-search">
+                <span aria-hidden="true">⌕</span>
+                <input id="studentOrderSearch" type="search" placeholder="Search by order or file" aria-label="Search your orders">
+            </label>
+
+            <div class="filter-row">
+
+                <button class="filter-chip active" data-order-filter="All">
+                    All
+                </button>
+
+                <button class="filter-chip" data-order-filter="Queued">
+                    Queued
+                </button>
+
+                <button class="filter-chip" data-order-filter="Printing">
+                    Printing
+                </button>
+
+                <button class="filter-chip" data-order-filter="Ready">
+                    Ready
+                </button>
+
+                <button class="filter-chip" data-order-filter="Collected">
+                    Collected
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+                <div id="studentAllOrders"></div>
+            </div>
+
+        </section>
+
+
+        <!-- STAFF DETAILS -->
+
+        <section id="studentStaff" class="hidden">
+
+            <div class="page-intro">
+
+                <div>
+                    <span class="eyebrow">CAMPUS SUPPORT</span>
+                    <h1>Print Shop Staff</h1>
+                    <p>Contact the shop regarding your print order.</p>
+                </div>
+
+            </div>
+
+
+            <div class="staff-profile-grid">
+
+                <div class="staff-profile-card">
+
+                    <div class="staff-avatar">PS</div>
+
+                    <div>
+                        <span class="eyebrow">SAMPLE STAFF DIRECTORY</span>
+                        <h2>Meet the shop team</h2>
+                        <p>ASIET Main Campus · Print Services</p>
+                    </div>
+
+                    <div class="staff-info">
+                        <div>
+                            <span>Print operator</span>
+                            <strong>Anil Kumar</strong>
+                        </div>
+
+                        <div>
+                            <span>Binding & finishing</span>
+                            <strong>Priya Nair</strong>
+                        </div>
+
+                        <div>
+                            <span>ID cards & collection</span>
+                            <strong>Arun Menon</strong>
+                        </div>
+
+                        <div>
+                            <span>Working hours</span>
+                            <strong>9:00 AM – 4:30 PM</strong>
+                        </div>
+
+                        <div>
+                            <span>Location</span>
+                            <strong>ASIET Campus Shop</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <span class="eyebrow">ORDER PROCESS</span>
+                            <h2>How it works</h2>
+                        </div>
+                    </div>
+
+                    <div class="steps">
+
+                        <div class="step">
+                            <b>01</b>
+                            <div>
+                                <strong>Upload</strong>
+                                <p>Submit your PDF through the student portal.</p>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <b>02</b>
+                            <div>
+                                <strong>Pay</strong>
+                                <p>Complete the payment before the order is placed.</p>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <b>03</b>
+                            <div>
+                                <strong>Print</strong>
+                                <p>The shop staff processes your order.</p>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <b>04</b>
+                            <div>
+                                <strong>Collect</strong>
+                                <p>Show your QR collection pass at the shop.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer class="app-footer">
+            <span>PrintHubASIET</span>
+            <span>Developed by <strong>Clueless</strong></span>
+        </footer>
+
+    </main>
+
+</section>
+
+
+<!-- ================= STAFF PORTAL ================= -->
+
+<section id="staffPage" class="portal-page hidden">
+
+    <header class="topbar">
+
+        <div class="top-brand">
+            <img class="mini-logo campus-logo" src="ASIET.jpg" alt="">
+
+            <div>
+                <strong>PrintHub<span>ASIET</span></strong>
+                <small>Shop Management</small>
+            </div>
+        </div>
+
+        <div class="college-name">
+            ADI SHANKARA INSTITUTE OF ENGINEERING & TECHNOLOGY
+        </div>
+
+        <div class="profile-area">
+            <div class="avatar staff-avatar-small">PS</div>
+
+            <div>
+                <strong>Print Shop Staff</strong>
+                <small>STAFF001</small>
+            </div>
+
+            <button onclick="logout()" class="logout-btn">Logout</button>
+        </div>
+
+    </header>
+
+
+    <aside class="sidebar">
+
+        <div class="sidebar-title">SHOP MANAGEMENT</div>
+
+        <button data-staff-view="dashboard" class="side-link active" title="Dashboard" aria-label="Dashboard">
+            <span>⌂</span>
+            Dashboard
+        </button>
+
+        <button data-staff-view="orders" class="side-link" title="Orders" aria-label="Orders">
+            <span>▤</span>
+            Orders
+        </button>
+
+        <button data-staff-view="finance" class="side-link" title="Payments" aria-label="Payments">
+            <span>₹</span>
+            Payments
+        </button>
+
+        <button data-staff-view="reports" class="side-link" title="Reports" aria-label="Reports">
+            <span>▥</span>
+            Reports
+        </button>
+
+        <div class="sidebar-bottom">
+            <div class="secure-box">
+                <span>●</span>
+                Staff Console
+            </div>
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <!-- STAFF DASHBOARD -->
+
+        <section id="staffDashboard">
+
+            <div class="page-intro">
+
+                <div>
+                    <span class="eyebrow">SHOP CONTROL CENTER</span>
+                    <h1>Good morning, Staff</h1>
+                    <p>Manage incoming student print orders.</p>
+                </div>
+
+                <div class="live-indicator">
+                    <span></span>
+                    LIVE QUEUE
+                    <strong id="staffLiveOrderCount" aria-live="polite">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon">◷</div>
+                    <div>
+                        <small>Pending</small>
+                        <strong id="staffPending">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">↻</div>
+                    <div>
+                        <small>Printing</small>
+                        <strong id="staffPrinting">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✓</div>
+                    <div>
+                        <small>Ready</small>
+                        <strong id="staffReady">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card dark-stat">
+                    <div class="stat-icon">₹</div>
+                    <div>
+                        <small>Total Revenue</small>
+                        <strong id="staffRevenue">₹0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-metrics">
+
+                <div class="metric-box">
+                    <span>Total Revenue</span>
+                    <strong id="dashboardRevenue">₹0</strong>
+                </div>
+
+                <div class="metric-box">
+                    <span>Total Orders</span>
+                    <strong id="dashboardOrderCount">0</strong>
+                </div>
+
+                <div class="metric-box">
+                    <span>Pages Requested</span>
+                    <strong id="dashboardPageCount">0</strong>
+                </div>
+
+                <div class="metric-box">
+                    <span>Collected</span>
+                    <strong id="dashboardCollectedCount">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="eyebrow">LIVE QUEUE</span>
+                        <h2>Recent Orders</h2>
+                    </div>
+
+                    <button
+                        class="text-btn"
+                        onclick="staffNavigate('orders')"
+                    >
+                        Manage all →
+                    </button>
+
+                </div>
+
+                <div id="staffRecentOrders"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STAFF ORDERS -->
+
+        <section id="staffOrders" class="hidden">
+
+            <div class="page-intro">
+
+                <div>
+                    <span class="eyebrow">ORDER MANAGEMENT</span>
+                    <h1>Print Queue</h1>
+                    <p>Process student orders and update their status.</p>
+                </div>
+
+            </div>
+
+
+            <label class="order-search">
+                <span aria-hidden="true">⌕</span>
+                <input id="staffOrderSearch" type="search" placeholder="Search orders, students or IDs" aria-label="Search staff orders">
+            </label>
+
+            <div class="filter-row">
+
+                <button class="filter-chip active" data-staff-filter="All">
+                    All
+                </button>
+
+                <button class="filter-chip" data-staff-filter="Queued">
+                    Queued
+                </button>
+
+                <button class="filter-chip" data-staff-filter="Printing">
+                    Printing
+                </button>
+
+                <button class="filter-chip" data-staff-filter="Ready">
+                    Ready
+                </button>
+
+                <button class="filter-chip" data-staff-filter="Collected">
+                    Collected
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+                <div id="staffAllOrders"></div>
+            </div>
+
+        </section>
+
+
+        <!-- FINANCE -->
+
+        <section id="staffFinance" class="hidden">
+
+            <div class="page-intro">
+
+                <div>
+                    <span class="eyebrow">FINANCE</span>
+                    <h1>Payment Ledger</h1>
+                    <p>Monitor payments received from student print orders.</p>
+                </div>
+
+                <button
+                    class="primary-btn"
+                    onclick="exportPayments()"
+                >
+                    Export CSV ↓
+                </button>
+
+            </div>
+
+
+            <div class="stat-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon">₹</div>
+                    <div>
+                        <small>Total Received</small>
+                        <strong id="financeTotal">₹0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">#</div>
+                    <div>
+                        <small>Transactions</small>
+                        <strong id="financeTransactions">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">▣</div>
+                    <div>
+                        <small>Ready for Collection</small>
+                        <strong id="financeCollection">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✓</div>
+                    <div>
+                        <small>Collected</small>
+                        <strong id="financeCollected">0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="panel table-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <span class="eyebrow">TRANSACTION HISTORY</span>
+                        <h2>Payments Received</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Student</th>
+                                <th>Registration</th>
+                                <th>Payment Time</th>
+                                <th>Method</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="paymentLedger"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REPORTS -->
+
+        <section id="staffReports" class="hidden">
+
+            <div class="page-intro">
+
+                <div>
+                    <span class="eyebrow">ANALYTICS</span>
+                    <h1>Shop Reports</h1>
+                    <p>A quick overview of printing activity.</p>
+                </div>
+
+            </div>
+
+
+            <div class="report-grid">
+
+                <div class="report-card">
+                    <span>Total Orders</span>
+                    <strong id="reportOrders">0</strong>
+                </div>
+
+                <div class="report-card">
+                    <span>Total Prints</span>
+                    <strong id="reportPages">0</strong>
+                </div>
+
+                <div class="report-card">
+                    <span>Black & White</span>
+                    <strong id="reportBW">0</strong>
+                </div>
+
+                <div class="report-card">
+                    <span>Colour</span>
+                    <strong id="reportColour">0</strong>
+                </div>
+
+                <div class="report-card report-wide">
+                    <span>Total Revenue</span>
+                    <strong id="reportRevenue">₹0</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer class="app-footer">
+            <span>PrintHubASIET</span>
+            <span>Developed by <strong>Clueless</strong></span>
+        </footer>
+
+    </main>
+
+</section>
+
+
+<!-- ================= PAYMENT MODAL ================= -->
+
+<div id="paymentModal" class="modal hidden">
+
+    <div class="modal-card payment-card">
+
+        <button class="modal-close" onclick="closeModal('paymentModal')">
+            ×
+        </button>
+
+        <span class="eyebrow">ORDER CHECKOUT</span>
+
+        <h2>Confirm & Pay</h2>
+
+        <p>
+            Review your print details before placing the order.
+        </p>
+
+
+        <div class="checkout-list">
+
+            <div>
+                <span>Document</span>
+                <strong id="checkoutFile">—</strong>
+            </div>
+
+            <div>
+                <span>Print Type</span>
+                <strong id="checkoutType">—</strong>
+            </div>
+
+            <div>
+                <span>Quantity</span>
+                <strong id="checkoutPages">—</strong>
+            </div>
+
+            <div>
+                <span>Finishing</span>
+                <strong id="checkoutFinishing">None</strong>
+            </div>
+
+            <div>
+                <span>Estimated Time</span>
+                <strong id="checkoutEstimate">—</strong>
+            </div>
+
+        </div>
+
+
+        <div class="checkout-total">
+            <span>Total to pay</span>
+            <strong id="checkoutTotal">₹0</strong>
+        </div>
+
+
+        <div class="demo-payment">
+            <span>DEMO PAYMENT</span>
+            <p>No real money will be charged.</p>
+        </div>
+
+
+        <button
+            id="confirmPaymentBtn"
+            class="primary-btn wide-btn"
+            onclick="confirmOrderPayment()"
+        >
+            Simulate Payment & Place Order →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ORDER CONFIRMATION ================= -->
+
+<div id="confirmationModal" class="modal hidden">
+
+    <div class="modal-card confirmation-card">
+
+        <div class="success-circle">✓</div>
+
+        <span class="eyebrow">ORDER PLACED</span>
+
+        <h2>Print order confirmed</h2>
+
+        <p>
+            Your payment has been recorded and your order is now in the shop queue.
+        </p>
+
+
+        <div class="order-number-box">
+            <span>ORDER ID</span>
+            <strong id="confirmationOrderId">PQ-1001</strong>
+        </div>
+
+
+        <div class="eta-large">
+            <span>Estimated completion</span>
+            <strong id="confirmationETA">About 5–10 min</strong>
+        </div>
+
+
+        <button
+            class="primary-btn wide-btn"
+            onclick="finishOrderConfirmation()"
+        >
+            Track My Order →
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= READY MODAL ================= -->
+
+<div id="staffReadyModal" class="modal hidden">
+
+    <div class="modal-card confirmation-card">
+
+        <div class="success-circle">✓</div>
+
+        <span class="eyebrow">PRINT COMPLETE</span>
+
+        <h2>Order Ready</h2>
+
+        <p>
+            The student can now collect the printed documents.
+        </p>
+
+
+        <div class="order-number-box">
+            <span>ORDER ID</span>
+            <strong id="staffReadyOrderId">PQ-1001</strong>
+        </div>
+
+
+        <div class="qr-info">
+            The collection QR has been generated in the student's portal.
+        </div>
+
+
+        <button
+            class="primary-btn wide-btn"
+            onclick="closeModal('staffReadyModal')"
+        >
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= STUDENT READY NOTIFICATION ================= -->
+
+<div id="studentReadyModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="studentReadyTitle">
+
+    <div class="modal-card confirmation-card">
+
+        <div class="success-circle">✓</div>
+
+        <span class="eyebrow">ORDER UPDATE</span>
+
+        <h2 id="studentReadyTitle">Your print order is ready</h2>
+
+        <p id="studentReadyMessage">Your order is ready for collection at the campus shop.</p>
+
+        <div class="order-number-box">
+            <span>ORDER ID</span>
+            <strong id="studentReadyOrderId">—</strong>
+        </div>
+
+        <div class="eta-large">
+            <span>Document</span>
+            <strong id="studentReadyFile">—</strong>
+        </div>
+
+        <button class="primary-btn wide-btn" onclick="studentViewReadyOrder()">
+            View My Orders
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= QR MODAL ================= -->
+
+<div id="qrModal" class="modal hidden">
+
+    <div class="modal-card qr-card">
+
+        <button class="modal-close" onclick="closeModal('qrModal')">
+            ×
+        </button>
+
+        <span class="eyebrow">COLLECTION PASS</span>
+
+        <h2>Show this QR at the shop</h2>
+
+        <p>
+            Your collection pass is valid for this order.
+        </p>
+
+
+        <div id="collectionQR" class="qr-container"></div>
+
+
+        <div class="order-number-box">
+            <span>ORDER ID</span>
+            <strong id="collectionOrderId">—</strong>
+        </div>
+
+
+        <div class="qr-warning">
+            <strong>Keep this screen ready</strong>
+            <span>Show it to the print shop staff when collecting.</span>
+        </div>
+
+
+        <button
+            class="primary-btn wide-btn"
+            onclick="closeModal('qrModal')"
+        >
+            Done
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div id="toast" class="toast"></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
